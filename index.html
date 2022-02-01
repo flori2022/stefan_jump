@@ -1,0 +1,43 @@
+<!DOCTYPE HTMl>
+<html lang="de">
+  <head>
+    <title>Stefan Run</title>
+  </head>
+  <body style="background:url(941898.jpg) no-repeat center center fixed">
+    <h1 style="text-align: center; font-family: sans-serif; font-size:500%">Stefan Run</h1>
+    <h2 style="text-align: center;">Press [Space] to start</h2>
+    <img src="stefan.png" style="width:200px; position: absolute; bottom: 10%" alt="stefan">
+    <div id="game-over" style="position:absolute; top:3%; text-align: center; width:100%; display: none">
+      <img src="stefan2.png" style="width:1000px; height: 600px; display: inline-block">
+      <h2 style="top:10%; transform: scale(10); color: red">Game Over</h2>
+    </div>
+
+    <script>
+      document.addEventListener('keypress', e => {
+        if (e.key !== ' ') return;
+        document.querySelector('#game-over').style.display = 'none';
+        Array.from({length: 50})
+          .map((v, k) => k)
+          .forEach(i => {
+            setTimeout(
+              () => document.querySelector('[src="stefan.png"]').style.left = i + '%',
+              i * 20
+            )
+          });
+
+        setTimeout(
+          () => {
+            document.querySelector('h2').innerText = 'Press [i] to jump';
+            document.addEventListener('keypress', e => {
+              if (e.key !== 'i') return;
+                document.querySelector('#game-over').style.display = 'block';
+            });
+          },
+          1010
+        );
+
+
+      });
+    </script>
+  </body>
+</html>
